@@ -10,18 +10,7 @@ const helmet = require("helmet")
 
 app.use(express.json());
 
-app.use(cors({
-  origin: 'https://shopper-frontend-sooty.vercel.app', // Replace with your frontend domain
-}));
-
-app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            imgSrc: ["'self'", "data:"], // Allow images from self and data URLs
-        },
-    },
-}))
+app.use(cors())
 
 // Database connection with MongoDB
 mongoose.connect(
