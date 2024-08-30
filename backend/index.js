@@ -14,8 +14,6 @@ app.use(cors({
   origin: 'https://shopper-frontend-sooty.vercel.app', // Replace with your frontend domain
 }));
 
-app.use(cors(corsOptions));
-
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
