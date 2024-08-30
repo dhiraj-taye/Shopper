@@ -6,8 +6,6 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const Grid = require("gridfs-stream");
-const { GridFsStorage } = require("multer-gridfs-storage");
 
 app.use(express.json());
 app.use(cors());
@@ -24,27 +22,25 @@ app.get("/", (req, res) => {
 
 // Image storage Engine
 
-const storage = new GridFsStorage({
-  url: "mongodb+srv://dhirajtaye01:kullungtaye@ecommerce.1wvvy12.mongodb.net/?retryWrites=true&w=majority&appName=ecommerce",
-  file: (req, file) => {
-    return {
-      filename: `${file.fieldname}_${Date.now()}${path.extname(
-        file.originalname
-      )}`,
-      bucketName: "uploads", // Bucket name in MongoDB
-    };
+const storage = multer.diskStorage({
+  destination: "./upload/images",
+  filename: (req, file, cb) => {
+    return cb(
+      null,
+      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+    );
   },
 });
 
-
-const upload = multer({ storage });
-
+const upload = multer({ storage: storage });
 
 // Creating Upload Endpoint for images
+app.use("/images", express.static("upload/images"));
+
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://shopper-backend-q0as.onrender.com/image/${req.file.filename}`,
+    image_url: `${req.file.filename}`,
   });
 });
 
