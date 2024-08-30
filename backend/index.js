@@ -10,11 +10,9 @@ const helmet = require("helmet")
 
 app.use(express.json());
 
-const corsOptions = {
-  origin: 'https://shopper-hai9.onrender.com', // Replace with your frontend domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
+app.use(cors({
+  origin: 'https://shopper-frontend-sooty.vercel.app', // Replace with your frontend domain
+}));
 
 app.use(cors(corsOptions));
 
