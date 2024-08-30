@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const Grid = require("gridfs-stream");
+const { GridFsStorage } = require("multer-gridfs-storage");
 
 app.use(express.json());
 app.use(cors());
@@ -24,7 +26,6 @@ app.get("/", (req, res) => {
 
 const storage = new GridFsStorage({
   url: "mongodb+srv://dhirajtaye01:kullungtaye@ecommerce.1wvvy12.mongodb.net/?retryWrites=true&w=majority&appName=ecommerce",
-  options: { useUnifiedTopology: true },
   file: (req, file) => {
     return {
       filename: `${file.fieldname}_${Date.now()}${path.extname(
