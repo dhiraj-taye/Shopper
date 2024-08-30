@@ -9,8 +9,14 @@ const cors = require("cors");
 const helmet = require("helmet")
 
 app.use(express.json());
-app.use(cors());
 
+const corsOptions = {
+  origin: 'https://shopper-hai9.onrender.com', // Replace with your frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 app.use(helmet({
     contentSecurityPolicy: {
