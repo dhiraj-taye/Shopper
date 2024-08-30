@@ -6,9 +6,20 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const helmet = require("helmet")
 
 app.use(express.json());
 app.use(cors());
+
+
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            imgSrc: ["'self'", "data:"], // Allow images from self and data URLs
+        },
+    },
+}))
 
 // Database connection with MongoDB
 mongoose.connect(
