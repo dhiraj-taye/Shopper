@@ -16,7 +16,7 @@ const LoginSignup = () => {
   const login = async () => {
     console.log("login function executed", formData);
     let responseData;
-    await fetch("https://shopper-backend-q0as.onrender.com/login", {
+    await fetch("https://shopper-hai9.onrender.com/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -39,7 +39,7 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("Signup function executed", formData);
     let responseData;
-    await fetch("https://shopper-backend-q0as.onrender.com/signup", {
+    await fetch("https://shopper-hai9.onrender.com/signup", {
       method: "POST",
       headers: {
         Accept: "application/form-data",

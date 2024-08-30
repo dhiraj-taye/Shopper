@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 export const ShopContext = createContext(null);
 
-const url ="https://shopper-backend-q0as.onrender.com/"
+
 
 const getDefaultCart = () => {
   let cart = {};
@@ -17,12 +17,12 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch("https://shopper-backend-q0as.onrender.com/allproducts")
+    fetch("https://shopper-hai9.onrender.com/allproducts")
       .then((response) => response.json())
       .then((data) => setAll_product(data));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://shopper-backend-q0as.onrender.com/getcart", {
+      fetch("https://shopper-hai9.onrender.com/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -39,7 +39,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://shopper-backend-q0as.onrender.com/addtocart", {
+      fetch("https://shopper-hai9.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -56,7 +56,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://shopper-backend-q0as.onrender.com/removefromcart", {
+      fetch("https://shopper-hai9.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/json",
